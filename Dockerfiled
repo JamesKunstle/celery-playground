@@ -1,5 +1,15 @@
 from python:latest
 
+# create a working directory
+RUN mkdir worker 
+
+# set that directory as working dir
+WORKDIR /worker
+
+# copy the contents of current file into the
+# working directory.
+COPY ./ /worker/
+
 run pip3 install -r requirements.txt
 
 cmd bash daemon.sh
