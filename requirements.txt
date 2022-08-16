@@ -3,3 +3,4 @@ numpy
 celery
 redis
 diskcache
+gunicorn
