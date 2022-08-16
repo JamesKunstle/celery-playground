@@ -1,4 +1,4 @@
-from python:latest
+from registry.fedoraproject.org/f33/python3
 
 # create a working directory
 RUN mkdir server 
