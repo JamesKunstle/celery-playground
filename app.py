@@ -12,7 +12,9 @@ if "REDIS_URL" in os.environ:
     # Use Redis & Celery if REDIS_URL set as an env variable
     from celery import Celery
 
-    celery_app = Celery(__name__, broker=os.environ["REDIS_URL"], backend=os.environ["REDIS_URL"])
+    redis_url = os.environ["REDIS_URL"][:8] +  ":" + os.getenv("database-password", "") + "@" + os.environ["REDIS_URL"][8:]
+
+    celery_app = Celery(__name__, broker=redis_url, backend=redis_url)
     background_callback_manager = CeleryManager(celery_app)
     print("using celery")
     using = "celery"
