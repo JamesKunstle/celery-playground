@@ -3,7 +3,7 @@ import os
 from urllib.parse import urlparse
 
 import dash
-from dash import DiskcacheManager, CeleryManager, Input, Output, html
+from dash import DiskcacheManager, CeleryManager, Input, Output, html, dcc
 
 using = None
 
@@ -53,7 +53,12 @@ server = app.server
 
 app.layout = html.Div(
     [
-        html.Div([html.P(id="paragraph_id", children=["Button not clicked"])]),
+        dcc.Loading(
+            children = html.Div([html.P(id="paragraph_id", children=["Button not clicked"])]),
+            type="cube",
+            fullscreen=True,
+            debug=True,
+        ),
         html.Button(id="button_id", children="Run Job!"),
     ]
 )
