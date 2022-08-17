@@ -68,13 +68,14 @@ app.layout = html.Div(
     output=Output("paragraph_id", "children"),
     inputs=Input("button_id", "n_clicks"),
     background=True,
+    prevent_initial_call=True
 )
 def update_clicks(n_clicks):
     start = time.perf_counter()
     time.sleep(45.0)
     global using
     end = time.perf_counter()
-    return [f"Clicked {n_clicks} times, using: {using}, last start:{start}, last end:{end}"]
+    return [f"Clicked {n_clicks} times, using: {using}, duration: {end-start} seconds"]
 
 
 if __name__ == "__main__":
